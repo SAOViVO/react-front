@@ -1,8 +1,9 @@
 import Navbar from "../components/Navbar";
-import { Input, Output, List, Notifications, Advertisement } from "../components";
+import { Input, Output, List, Notifications, Advertisement, InitBtn } from "../components";
+import { Buttons } from "../containers/Buttons";
 const Home = () => {
   return (
-    <div className="h-screen border-2 border-solid border-blue-700">
+    <div className="h-screen">
         <Navbar></Navbar>
         <div className="flex items-center h-auto border border-black py-4 px-8 space-x-4">
             <div className="w-2/4 rounded-sm space-y-4">
@@ -24,7 +25,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex items-center h-full border w-2/4 border-black py-4 px-8">
-              
+              <Buttons />
             </div>
         </div>
  
