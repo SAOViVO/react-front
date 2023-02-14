@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 import { Input, Output, List, Notifications, Advertisement, InitBtn } from "../components";
 import { Buttons } from "../containers/Buttons";
+import { ListVideos } from "../containers/ListVideos";
 const Home = () => {
   return (
     <div className="h-screen">
         <Navbar></Navbar>
-        <div className="flex items-center h-auto border border-black py-4 px-8 space-x-4">
+        <div className="flex items-start h-auto border border-black py-4 px-8 space-x-4">
             <div className="w-2/4 rounded-sm space-y-4">
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
                     <Input />
@@ -24,8 +25,9 @@ const Home = () => {
                     <Advertisement /> 
                 </div>
             </div>
-            <div className="flex items-center h-full border w-2/4 border-black py-4 px-8">
+            <div className="flex flex-col   items-start h-full border w-2/4 py-4 px-8">
               <Buttons />
+              <ListVideos />
             </div>
         </div>
  
