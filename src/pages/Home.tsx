@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
-import { Input, Output, List, Notifications, Advertisement, InitBtn } from "../components";
-import { Buttons } from "../containers/Buttons";
-import { ListVideos } from "../containers/ListVideos";
+import { Input, Output, List, Notifications, Advertisement } from "../components";
+import { ListVideos, Buttons } from "../containers";
 const Home = () => {
   return (
     <div className="h-screen">
@@ -25,7 +24,7 @@ const Home = () => {
                     <Advertisement /> 
                 </div>
             </div>
-            <div className="flex flex-col   items-start h-full border w-2/4 py-4 px-8">
+            <div className="flex flex-col  items-start border w-2/4 py-4 px-8">
               <Buttons />
               <ListVideos />
             </div>

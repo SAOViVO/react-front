@@ -3,7 +3,7 @@ export const Buttons = () => {
   return (
     <div className='flex space-x-4'>
         <InitBtn />
-        <AddVideoBtn />
+        <AddVideoBtn disabled={true} />
     </div>
   )
 }
