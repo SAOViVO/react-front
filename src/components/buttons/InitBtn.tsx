@@ -1,4 +1,4 @@
-import { ReactComponent as Triangle } from '../static/triangle-white.svg'
+import { ReactComponent as Triangle } from '../../static/triangle-white.svg'
 interface Props {
     init: () => void;
     isStreaming?: boolean

@@ -1,11 +1,13 @@
-import { InitBtn , AddVideoBtn } from '../components'
-import { useStream } from '../hooks'
+import { InitBtn , AddVideoBtn, StopBtn } from '../components'
+import { useStream, useVideos } from '../hooks'
+
 export const Buttons = () => {
-  const { isStreaming, initStream } = useStream()
+  const { isStreaming, initStream } = useStream();
+  const { videos, addVideoElement } = useVideos();
   return (
     <div className='flex space-x-4'>
-        <InitBtn init={initStream} />
-        <AddVideoBtn disabled={isStreaming} />
+        {isStreaming ? <StopBtn stop={initStream}/> : <InitBtn init={initStream} />}
+        <AddVideoBtn disabled={isStreaming} innerRef={addVideoElement} />
     </div>
   )
 }

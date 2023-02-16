@@ -10,7 +10,7 @@ export const Notifications = () => {
             <div className='w-full h-4/5 border-[#828282] border border-solid
                             flex flex-col p-4 rounded-lg'>
                 {notifications.reverse().map((el, i) => (
-                    <h3 className={`font-poppins text-lg
+                    <h3 key={el} className={`font-poppins text-lg
                     ${i === notifications.length -1 && 'text-[#BDBDBD]'}`}>{el}
                     </h3>
                 ))}
