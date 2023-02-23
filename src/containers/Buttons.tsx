@@ -3,11 +3,11 @@ import { useStream, useVideos } from '../hooks'
 
 export const Buttons = () => {
   const { isStreaming, initStream } = useStream();
-  const { videos, addVideoElement } = useVideos();
+  const { videos, addVideo } = useVideos();
   return (
     <div className='flex space-x-4'>
         {isStreaming ? <StopBtn stop={initStream}/> : <InitBtn init={initStream} />}
-        <AddVideoBtn disabled={isStreaming} innerRef={addVideoElement} />
+        <AddVideoBtn disabled={isStreaming} addVideo={addVideo} />
     </div>
   )
 }
