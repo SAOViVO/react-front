@@ -5,11 +5,12 @@ export const useVideos = () => {
     const [ videos, setVideos ] = useState<any>([])
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
+        console.log(e.target.files)
         var videoToUpload = e.target.files[0];
         console.log(videoToUpload)
-        // if(!videoToUpload) return;
+        if(!videoToUpload) return;
         var formData = new FormData();
-        formData.append('file', videoToUpload);
+        formData.append('files', videoToUpload);
         fetch("http://127.0.0.1:4000/upload", {
             mode: 'no-cors',
             method: "POST",
@@ -18,11 +19,7 @@ export const useVideos = () => {
                 "Content-type": "multipart/form-data",
             }
           }).then(function (res) {
-            if (res.ok) {
-              console.log('ok')
-            } else if (res.status == 401) {
-              console.log('error')
-            }
+            console.log(res)
           }, function (e) {
             console.log(e)
             // alert("Error submitting form!");
