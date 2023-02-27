@@ -15,7 +15,6 @@ export const AddVideoBtn = ({ disabled, addVideo }: Props) => {
                   onChange={addVideo}
                   className="w-1/3 border hidden  h-10 border-[#000000] rounded-full mx-auto bg-whiute" /> 
         </label> 
-        <button type='submit'>Submit</button>
       </form>    
      )
 }
