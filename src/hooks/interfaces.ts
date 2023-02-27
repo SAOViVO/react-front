@@ -13,4 +13,6 @@ export interface IVideo  {
 }
 export interface Videos {
     videoQueue: Array<IVideo>
+    inPlay: null | IVideo
+    reproduced: null | Array<IVideo>
 }
