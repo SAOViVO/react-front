@@ -2,17 +2,18 @@ import { ReactComponent as Move } from '../static/move.svg'
 import { ReactComponent as More } from '../static/more.svg'
 import { IVideo } from '../hooks/interfaces'
 interface Props {
-  data: IVideo
+  video: IVideo
 }
-export const ItemVideo = ({ data }: Props) => {
+export const ItemVideo = ({ video }: Props) => {
+  const { name, duration } = video
   return (
     <div className='w-full border font-poppins justify-between px-4 flex border-black h-24'>
-        <div className='items-center flex space-x-2'>
+        <div className='items-center flex space-x-4'>
             <Move /> 
-            <h3>Titulo video</h3>
+            <h3>{name}</h3>
         </div>
-        <div className='flex items-center space-x-2'>
-            <span>00:14:03</span>
+        <div className='flex items-center space-x-4'>
+            <span>{duration}</span>
             <span><More /></span>
         </div>
 

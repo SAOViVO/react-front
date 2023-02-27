@@ -20,6 +20,7 @@ export const useStream = () => {
          .then((json) => console.log(json)))
          .catch(() => setIsStreaming(false))
     }
+    
     return {
         isStreaming,
         initStream, 

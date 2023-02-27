@@ -1,7 +1,10 @@
 import Navbar from "../components/Navbar";
 import { Input, Output, List, Notifications, Advertisement } from "../components";
 import { ListVideos, Buttons } from "../containers";
+import { useStream, useVideos } from "../hooks";
 const Home = () => {
+  const { isStreaming, initStream , stopStream } = useStream();
+  const { videos, addVideo } = useVideos();
   return (
     <div className="h-screen">
         <Navbar></Navbar>
@@ -25,8 +28,9 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex flex-col  items-start border w-2/4 py-4 px-8">
-              <Buttons />
-              <ListVideos />
+              <Buttons addVideo={addVideo} isStreaming={isStreaming} 
+                       initStream={initStream} stopStream={stopStream}/>
+              <ListVideos videos={videos}/>
             </div>
         </div>
  

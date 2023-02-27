@@ -5,6 +5,7 @@ export const useVideos = () => {
     const [ videos, setVideos ] = useState<any>([])
     const [ toggle, setToggle ] = useState<boolean>(false);
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
+        console.log("entre")
         if (!e.target.files) return;
         var videoToUpload = e.target.files[0];
         if(!videoToUpload) return;

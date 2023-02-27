@@ -1,9 +1,14 @@
+import { ChangeEvent } from 'react'
 import { InitBtn , AddVideoBtn, StopBtn } from '../components'
-import { useStream, useVideos } from '../hooks'
+interface Props {
+  addVideo: (event: ChangeEvent<HTMLInputElement>) => void;
+  isStreaming: boolean;
+  initStream: () => void;
+  stopStream: () => void
 
-export const Buttons = () => {
-  const { isStreaming, initStream , stopStream} = useStream();
-  const { videos, addVideo } = useVideos();
+}
+export const Buttons = (props: Props) => {
+  const { isStreaming, stopStream , initStream , addVideo } = props
   return (
     <div className='flex space-x-4'>
         {isStreaming ? <StopBtn stop={stopStream}/> : <InitBtn init={initStream} />}

@@ -1,4 +1,4 @@
-import { ChangeEvent, MutableRefObject } from 'react';
+import { ChangeEvent } from 'react';
 import { ReactComponent as Add } from '../../static/add.svg'
 
 interface Props {
