@@ -3,8 +3,8 @@ import { useState } from "react"
 export const useStream = () => {
     const [ isStreaming, setIsStreaming ] = useState<boolean>(false);
     const initStream = async () => {
-       let bodyFetch = { status: 'play'}
-       fetch("http://127.0.0.1:4000/upload", {
+       let bodyFetch = { status: 'start'}
+       fetch("http://127.0.0.1:4000/playlist", {
         method: "PUT",
         body: JSON.stringify(bodyFetch),
       }).then((response) => response.json()  
@@ -13,7 +13,7 @@ export const useStream = () => {
     }
     const stopStream = async () => {
         let bodyFetch = { status: 'stop'}
-        fetch("http://127.0.0.1:4000/upload", {
+        fetch("http://127.0.0.1:4000/playlist", {
          method: "PUT",
          body: JSON.stringify(bodyFetch),
        }).then((response) => response.json()
