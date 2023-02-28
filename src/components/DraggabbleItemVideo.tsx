@@ -7,9 +7,15 @@ interface Props {
   dragOverItem:  React.MutableRefObject<any>;
   i?: number;
   handleSort: () => void;
+  deleteVideo: () => void;
+}
+const MoreOptions = () => {
+  return <div className='h-32 w-32 bg-white  -ml-[10rem] absolute'>
+    
+  </div>
 }
 export const DraggableItemVideo = (props: Props) => {
-  const { dragItem, dragOverItem, i, handleSort, video} = props;
+  const { dragItem, dragOverItem, i, handleSort, video, deleteVideo } = props;
   const { name, duration } = video;
   return (
     <div className='w-full border font-poppins justify-between px-4 flex border-black h-24'
@@ -24,7 +30,7 @@ export const DraggableItemVideo = (props: Props) => {
         </div>
         <div className='flex items-center space-x-4'>
             <span>{duration}</span>
-            <span><More /></span>
+            <button onClick={deleteVideo}><More /></button>
         </div>
     </div>
   )

@@ -28,7 +28,17 @@ export const useVideos = () => {
        method: 'PATCH',
        body: JSON.stringify(bodyFetch),
       }).then((response) => console.log(response))
+    }    
+    const deleteVideo = async (id: string) => {
+      const bodyFetch = { id: id }
+      fetch('http://127.0.0.1:4000/playlist', {
+        method: 'DELETE',
+        body: JSON.stringify(bodyFetch),
+       }).then((response) =>{if(response.ok)  setToggle(!toggle)})
+       .catch((err) => console.log(err))
+     
     }
+
     useEffect(() => {
       axios.get('http://127.0.0.1:4000/playlist')
       .then(({data}) => setVideos(data))
@@ -38,6 +48,7 @@ export const useVideos = () => {
     return {
         videos,
         addVideo,
-        changePosition
+        changePosition, 
+        deleteVideo
     }
 }

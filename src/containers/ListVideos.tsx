@@ -4,8 +4,9 @@ import { IVideo, Videos } from '../hooks/interfaces';
 interface Props {
   videos: Videos;
   changePosition: (id: string, position: number) => void;
+  deleteVideo: (id: string) => void;
 }
-export const ListVideos = ({ videos, changePosition } : Props) => {
+export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
 	const dragItem = useRef<any>(null)
 	const dragOverItem = useRef<any>(null)
   const { videoQueue, inPlay, reproduced } = videos;
@@ -39,6 +40,7 @@ export const ListVideos = ({ videos, changePosition } : Props) => {
         <h2> A continuación </h2>
         {videosState && videosState.map((item, i) => (
            <DraggableItemVideo 
+           deleteVideo={() => deleteVideo(item.id)}
            i={i}
            key={item.id} 
            video={item} 

@@ -4,7 +4,7 @@ import { ListVideos, Buttons } from "../containers";
 import { useStream, useVideos } from "../hooks";
 const Home = () => {
   const { isStreaming, initStream , stopStream } = useStream();
-  const { videos, addVideo , changePosition} = useVideos();
+  const { videos, addVideo , changePosition, deleteVideo } = useVideos();
   return (
     <div className="h-screen">
         <Navbar></Navbar>
@@ -30,7 +30,7 @@ const Home = () => {
             <div className="flex flex-col  items-start border w-2/4 py-4 px-8">
               <Buttons addVideo={addVideo} isStreaming={isStreaming} 
                        initStream={initStream} stopStream={stopStream}/>
-              <ListVideos videos={videos} changePosition={changePosition}/>
+              <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo}/>
             </div>
         </div>
  
