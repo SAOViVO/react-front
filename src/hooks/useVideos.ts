@@ -22,6 +22,13 @@ export const useVideos = () => {
             console.log(e)
           });
     }
+    const changePosition = (id: string, position: number) => {
+      const bodyFetch = { id: id, position: position }
+      fetch('http://127.0.0.1:4000/playlist', {
+       method: 'PATCH',
+       body: JSON.stringify(bodyFetch),
+      }).then((response) => console.log(response))
+    }
     useEffect(() => {
       axios.get('http://127.0.0.1:4000/playlist')
       .then(({data}) => setVideos(data))
@@ -30,6 +37,7 @@ export const useVideos = () => {
     
     return {
         videos,
-        addVideo
+        addVideo,
+        changePosition
     }
 }
