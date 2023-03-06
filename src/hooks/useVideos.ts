@@ -7,17 +7,27 @@ export const useVideos = () => {
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
         console.log("entre")
         if (!e.target.files) return;
-        var videoToUpload = e.target.files[0];
-        if(!videoToUpload) return;
+        var videoToUpload;
         var formData = new FormData();
-        formData.append('files', videoToUpload);
+        if(e.target.files.length > 1){
+          for(let i = 0; i < e.target.files.length; i++) {
+             videoToUpload = e.target.files[i];
+             formData.append('files', videoToUpload);
+           }
+
+        }else{
+          console.log(e.target.files.length)
+          videoToUpload = e.target.files[0];
+          if(!videoToUpload) return;
+          formData.append('files', videoToUpload);
+        }
         fetch("http://127.0.0.1:4000/upload", {
             mode: 'no-cors',
             method: "POST",
             body: formData,
-          }).then(function (res) {
-            console.log(res)
-            setToggle(!toggle)
+          }).then((res) =>{ res.text()
+            .then((json) => { console.log(json); setToggle(!toggle)})
+
           }, function (e) {
             console.log(e)
           });
@@ -34,7 +44,10 @@ export const useVideos = () => {
       fetch('http://127.0.0.1:4000/playlist', {
         method: 'DELETE',
         body: JSON.stringify(bodyFetch),
-       }).then((response) =>{if(response.ok)  setToggle(!toggle)})
+       }).then((response) =>{
+        response.json().then((json) => 
+        console.log(json))
+        if(response.ok) setToggle(!toggle);})
        .catch((err) => console.log(err))
      
     }

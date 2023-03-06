@@ -3,7 +3,7 @@ import { Input, Output, List, Notifications, Advertisement } from "../components
 import { ListVideos, Buttons } from "../containers";
 import { useStream, useVideos } from "../hooks";
 const Home = () => {
-  const { isStreaming, initStream , stopStream } = useStream();
+  const { isStreaming, initStream , stopStream, addOutput, output} = useStream();
   const { videos, addVideo , changePosition, deleteVideo } = useVideos();
   return (
     <div className="h-screen">
@@ -13,7 +13,7 @@ const Home = () => {
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
                     <Input />
                     <List />
-                    <Output />
+                    <Output output={output} add={addOutput} />
                     <p>No sabés cómo conseguir tu link? {" "}
                         <a href="!#">
                           <span className='text-[#2F80ED]'>
