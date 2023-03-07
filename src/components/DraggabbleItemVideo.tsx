@@ -1,6 +1,8 @@
 import { ReactComponent as Move } from '../static/move.svg'
 import { ReactComponent as More } from '../static/more.svg'
 import { IVideo } from '../hooks/interfaces'
+import { toHoursAndMinutes } from './utils'
+
 interface Props {
   video: IVideo;
   dragItem: React.MutableRefObject<any>;
@@ -29,7 +31,7 @@ export const DraggableItemVideo = (props: Props) => {
             <h3>{name}</h3>
         </div>
         <div className='flex items-center space-x-4'>
-            <span>{duration}</span>
+            <span>{toHoursAndMinutes(parseInt(duration))}</span>
             <button onClick={deleteVideo}><More /></button>
         </div>
     </div>
