@@ -30,7 +30,8 @@ const Home = () => {
             </div>
             <div className="flex flex-col  items-start border w-2/4 py-4 px-8">
               <Buttons addVideo={addVideo} isStreaming={isStreaming} 
-                       initStream={initStream} stopStream={stopStream}/>
+                       initStream={initStream} stopStream={stopStream}
+                       videos={videos} output={output} />
               <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo}/>
             </div>
         </div>

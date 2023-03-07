@@ -4,7 +4,7 @@ type add = (status: number, message: string) => void
 export const useStream = (addMessage: add) => {
   console.log(addMessage)
     const [ isStreaming, setIsStreaming ] = useState<boolean>(false);
-    const [ output, setOutput ] = useState<string|undefined>(undefined);
+    const [ output, setOutput ] = useState<string>('');
     const initStream = async () => {
        let bodyFetch = { status: 'start'}
        fetch("http://127.0.0.1:4000/playlist", {
@@ -32,6 +32,7 @@ export const useStream = (addMessage: add) => {
          method: "PUT",
          body: JSON.stringify(bodyFetch),
        }).then((response) => {
+          console.log(response);
           setIsStreaming(false); 
       }
        )
