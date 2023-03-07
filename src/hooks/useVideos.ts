@@ -22,7 +22,7 @@ export const useVideos = (addMessage: add) => {
           if(!videoToUpload) return;
           formData.append('files', videoToUpload);
         }
-        fetch("http://127.0.0.1:4000/upload", {
+        fetch("http://127.0.0.1:4000/playlist", {
             mode: 'no-cors',
             method: "POST",
             body: formData,
