@@ -1,20 +1,23 @@
 import { ReactComponent as Move } from '../static/move.svg'
 import { ReactComponent as More } from '../static/more.svg'
 import { IVideo } from '../hooks/interfaces'
+import { toHoursAndMinutes } from './utils'
 interface Props {
-  video: IVideo
-  className?: string
+  video: IVideo;
+  className?: string;
+  inPlay: boolean;
 }
-export const ItemVideo = ({ video, className }: Props) => {
+export const ItemVideo = ({ video, className, inPlay }: Props) => {
   const { name, duration } = video
   return (
-    <div className={`w-full border font-poppins justify-between px-4 flex border-black h-24 ${className}`}>
+    <div className={`w-full border font-poppins justify-between px-4 flex h-24 
+                  ${inPlay ? 'border-black' : 'border-[#828282] text-[#828282]'}`}>
         <div className='items-center flex space-x-4'>
             <Move /> 
-            <h3>{name}</h3>
+            <h3 className={inPlay ? 'font-bold' : ''}>{name}</h3>
         </div>
         <div className='flex items-center space-x-4'>
-            <span>{duration}</span>
+            <span>{toHoursAndMinutes(parseInt(duration))}</span>
             <span><More /></span>
         </div>
 

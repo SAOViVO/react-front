@@ -28,10 +28,10 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   return (
     <div className='w-full flex max-h-[33rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4'>
         {reproduced && reproduced.map((item) => (
-           <ItemVideo key={item.id} video={item} /> 
+           <ItemVideo key={item.id} video={item} inPlay={false} /> 
         ))}
         {inPlay && <h2> Ahora en vivo </h2>}
-        {inPlay && <ItemVideo video={inPlay} className='text-gray-700' />}
+        {inPlay && <ItemVideo video={inPlay} inPlay={true} />}
         <h2> A continuación </h2>
         {videosState && videosState.map((item, i) => (
            <DraggableItemVideo 
