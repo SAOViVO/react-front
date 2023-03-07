@@ -1,6 +1,8 @@
 import { ChangeEvent, useState, useEffect } from "react"
 import axios from "axios"
-export const useVideos = () => {
+type add = (status: number, message: string) => void
+
+export const useVideos = (addMessage: add) => {
     // const addVideoElement = useRef<any>(null)
     const [ videos, setVideos ] = useState<any>([])
     const [ toggle, setToggle ] = useState<boolean>(false);
@@ -14,8 +16,7 @@ export const useVideos = () => {
              videoToUpload = e.target.files[i];
              formData.append('files', videoToUpload);
            }
-
-        }else{
+        }else {
           console.log(e.target.files.length)
           videoToUpload = e.target.files[0];
           if(!videoToUpload) return;
@@ -25,19 +26,20 @@ export const useVideos = () => {
             mode: 'no-cors',
             method: "POST",
             body: formData,
-          }).then((res) =>{ res.text()
-            .then((json) => { console.log(json); setToggle(!toggle)})
-
-          }, function (e) {
-            console.log(e)
-          });
+          }).then(() => setToggle(!toggle));
     }
     const changePosition = (id: string, position: number) => {
       const bodyFetch = { id: id, position: position }
       fetch('http://127.0.0.1:4000/playlist', {
        method: 'PATCH',
        body: JSON.stringify(bodyFetch),
-      }).then((response) => console.log(response))
+      }).then((response) => {
+        response.json().then((json) => {
+          setToggle(!toggle); 
+          addMessage(response.status, json.message)
+        })
+       })
+       .catch((err) =>  addMessage(err.status, err.error))
     }    
     const deleteVideo = async (id: string) => {
       const bodyFetch = { id: id }
@@ -45,19 +47,28 @@ export const useVideos = () => {
         method: 'DELETE',
         body: JSON.stringify(bodyFetch),
        }).then((response) =>{
-        response.json().then((json) => 
-        console.log(json))
-        if(response.ok) setToggle(!toggle);})
-       .catch((err) => console.log(err))
-     
+        response.json().then((json) => {
+               if(response.ok){ 
+                setToggle(!toggle);  addMessage(response.status, json.message)
+              }})
+         } )
+       .catch((err) =>  addMessage(err.status, err.error))
     }
+    useEffect(() => {
 
+      const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
+        axios.get('http://127.0.0.1:4000/playlist')
+        .then(({data}) => setVideos(data))
+        .catch((err) => console.log(err))
+      }, 10000)
+      return () => clearInterval(intervalId); //This is important
+    }, [])
     useEffect(() => {
       axios.get('http://127.0.0.1:4000/playlist')
       .then(({data}) => setVideos(data))
       .catch((err) => console.log(err))
     }, [toggle])
-    
+  
     return {
         videos,
         addVideo,

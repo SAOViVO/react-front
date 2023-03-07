@@ -3,11 +3,12 @@ import { ReactComponent as More } from '../static/more.svg'
 import { IVideo } from '../hooks/interfaces'
 interface Props {
   video: IVideo
+  className?: string
 }
-export const ItemVideo = ({ video }: Props) => {
+export const ItemVideo = ({ video, className }: Props) => {
   const { name, duration } = video
   return (
-    <div className='w-full border font-poppins justify-between px-4 flex border-black h-24'>
+    <div className={`w-full border font-poppins justify-between px-4 flex border-black h-24 ${className}`}>
         <div className='items-center flex space-x-4'>
             <Move /> 
             <h3>{name}</h3>

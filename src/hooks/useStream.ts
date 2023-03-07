@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
+type add = (status: number, message: string) => void
 
-export const useStream = () => {
+export const useStream = (addMessage: add) => {
+  console.log(addMessage)
     const [ isStreaming, setIsStreaming ] = useState<boolean>(false);
     const [ output, setOutput ] = useState<string|undefined>(undefined);
     const initStream = async () => {
@@ -8,15 +10,31 @@ export const useStream = () => {
        fetch("http://127.0.0.1:4000/playlist", {
         method: "PUT",
         body: JSON.stringify(bodyFetch),
-      }).then(() => { setIsStreaming(true); console.log("bien")})
-        .catch((err) => { setIsStreaming(false); console.log(err)})
+      }).then((response) => {
+         if(response.ok){
+          response.json().then((json) => {
+            console.log("soy json", json)
+            addMessage(response.status, json.message)
+            setIsStreaming(true); 
+            console.log("bien")
+          })
+         }
+        })
+        .catch((err) => { 
+          setIsStreaming(false); 
+          addMessage(err.status, err.error)
+          console.log(err)
+        })
     }
     const stopStream = async () => {
         let bodyFetch = { status: 'stop'}
         fetch("http://127.0.0.1:4000/playlist", {
          method: "PUT",
          body: JSON.stringify(bodyFetch),
-       }).then((json) => setIsStreaming(false))
+       }).then((response) => {
+          setIsStreaming(false); 
+      }
+       )
          .catch(() => setIsStreaming(false))
     }
     const addOutput = async (output: string) => {
@@ -25,8 +43,8 @@ export const useStream = () => {
           method: 'PATCH',
           body: JSON.stringify(bodyFetch),
       }).then((response) => response.json()
-        .then((json) => { console.log(json); setOutput(output)}))
-        .catch((err) => console.log(err))
+        .then((json) => { addMessage(response.status, json.message); setOutput(output)}))
+        .catch((err) => addMessage(err.status, err.error))
     }
     useEffect(() => {
         fetch("http://127.0.0.1:4000/playlist")
