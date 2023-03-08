@@ -32,7 +32,9 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
     <div className='w-full flex max-h-[33rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4'>
       <Popup isShowing={isShowing} 
              close={toggle}
-             deleteVideo={() => deleteVideo(id)} />
+             deleteVideo={() => deleteVideo(id)} 
+             toFirst={ () => changePosition(id, 0)}
+             toLast={() => changePosition(id, videosState.length - 1)} />
         {reproduced && reproduced.map((item) => (
            <ItemVideo key={item.id} video={item} inPlay={false} /> 
         ))}
