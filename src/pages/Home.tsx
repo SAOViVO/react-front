@@ -4,8 +4,8 @@ import { ListVideos, Buttons } from "../containers";
 import { useStream, useVideos, useMessages } from "../hooks";
 const Home = () => {
   const { addMessage, messages } = useMessages()
-  const { isStreaming, initStream , stopStream, addOutput, output} = useStream(addMessage);
-  const { videos, addVideo , changePosition, deleteVideo } = useVideos(addMessage);
+  const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle } = useVideos(addMessage);
+  const { isStreaming, initStream , stopStream } = useStream(addMessage, handleToggle);
   return (
     <div className="h-screen">
         <Navbar></Navbar>

@@ -6,6 +6,17 @@ export const useVideos = (addMessage: add) => {
     // const addVideoElement = useRef<any>(null)
     const [ videos, setVideos ] = useState<any>([])
     const [ toggle, setToggle ] = useState<boolean>(false);
+    const [ output, setOutput ] = useState<string>('');
+
+    const addOutput = async (output: string) => {
+      let bodyFetch = { output: output }
+      fetch("http://127.0.0.1:4000/playlist", {
+        method: 'PATCH',
+        body: JSON.stringify(bodyFetch),
+    }).then((response) => response.json()
+      .then((json) => { addMessage(response.status, json.message); setOutput(output)}))
+      .catch((err) => addMessage(err.status, err.error))
+  }
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
         console.log("entre")
         if (!e.target.files) return;
@@ -54,18 +65,18 @@ export const useVideos = (addMessage: add) => {
          } )
        .catch((err) =>  addMessage(err.status, err.error))
     }
+    const handleToggle = () => setToggle(!toggle)
     useEffect(() => {
-
       const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
         axios.get('http://127.0.0.1:4000/playlist')
-        .then(({data}) => setVideos(data))
+        .then(({data}) => {setVideos(data); setOutput(data.output)  })
         .catch((err) => console.log(err))
       }, 10000)
       return () => clearInterval(intervalId); //This is important
     }, [])
     useEffect(() => {
       axios.get('http://127.0.0.1:4000/playlist')
-      .then(({data}) => setVideos(data))
+      .then(({data}) => {setVideos(data); setOutput(data.output)  })
       .catch((err) => console.log(err))
     }, [toggle])
   
@@ -73,6 +84,9 @@ export const useVideos = (addMessage: add) => {
         videos,
         addVideo,
         changePosition, 
-        deleteVideo
+        deleteVideo,
+        addOutput,
+        output,
+        handleToggle
     }
 }
