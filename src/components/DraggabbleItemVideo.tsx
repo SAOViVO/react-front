@@ -17,7 +17,7 @@ export const DraggableItemVideo = (props: Props) => {
   const { dragItem, dragOverItem, i, handleSort, video, moreOptions } = props;
   const { name, duration } = video;
   return (
-    <div className='w-full border font-poppins justify-between px-4 flex border-black h-24'
+    <div className='w-full border font-poppins justify-between px-4 flex border-[#828282] h-20 rounded-lg'
          draggable
          onDragStart={(e) => (dragItem.current = i)}
          onDragEnter={(e) => (dragOverItem.current = i)}

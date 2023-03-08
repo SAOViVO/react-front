@@ -75,8 +75,12 @@ export const useVideos = (addMessage: add) => {
       return () => clearInterval(intervalId); //This is important
     }, [])
     useEffect(() => {
+      console.log('entre toggle')
       axios.get('http://127.0.0.1:4000/playlist')
-      .then(({data}) => {setVideos(data); setOutput(data.output)  })
+      .then(({data}) => { 
+        setVideos(data); 
+        setOutput(data.output) 
+      })
       .catch((err) => console.log(err))
     }, [toggle])
   

@@ -32,11 +32,17 @@ export const useStream = (addMessage: add, toggle: toggle) => {
          method: "PUT",
          body: JSON.stringify(bodyFetch),
        }).then((response) => {
-          console.log(response);
-          setIsStreaming(false); 
-      }
-       )
-         .catch(() => setIsStreaming(false))
+          response.json()
+          .then((json)=> {
+            addMessage(response.status, json.message)
+            toggle()
+            setIsStreaming(false); 
+          })})
+          .catch((err) => { 
+            setIsStreaming(false); 
+            addMessage(err.status, err.error)
+            console.log(err)
+          })
     }
 
     useEffect(() => {

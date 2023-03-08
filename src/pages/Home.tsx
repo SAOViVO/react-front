@@ -28,7 +28,7 @@ const Home = () => {
                     <Advertisement /> 
                 </div>
             </div>
-            <div className="flex flex-col  items-start border w-2/4 py-4 px-8">
+            <div className="flex flex-col  items-start border h-full w-2/4 py-4 px-8">
               <Buttons addVideo={addVideo} isStreaming={isStreaming} 
                        initStream={initStream} stopStream={stopStream}
                        videos={videos} output={output} />

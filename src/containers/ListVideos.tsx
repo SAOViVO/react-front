@@ -29,7 +29,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   }, [videoQueue])
   console.log(id)
   return (
-    <div className='w-full flex max-h-[33rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4'>
+    <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4 font-poppins'>
       <Popup isShowing={isShowing} 
              close={toggle}
              deleteVideo={() => deleteVideo(id)} 

@@ -10,8 +10,8 @@ interface Props {
 export const ItemVideo = ({ video, className, inPlay }: Props) => {
   const { name, duration } = video
   return (
-    <div className={`w-full border font-poppins justify-between px-4 flex h-24 
-                  ${inPlay ? 'border-black' : 'border-[#828282] text-[#828282]'}`}>
+    <div className={`w-full border font-poppins justify-between px-4 flex border-[#828282] h-20 rounded-lg
+                  ${inPlay ? '' : ' text-[#828282]'}`}>
         <div className='items-center flex space-x-4'>
             <Move /> 
             <h3 className={inPlay ? 'font-bold' : ''}>{name}</h3>
