@@ -6,3 +6,9 @@
 body{
     background-color: #FAFAFA;
 }
+.list {
+    @apply flex justify-start w-full space-x-4 cursor-pointer;
+}
+.item {
+    margin-right: 15px;
+}

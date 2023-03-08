@@ -1,12 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { ItemVideo, DraggableItemVideo} from '../components'
-import { IVideo, Videos } from '../hooks/interfaces';
+import { Videos } from '../hooks/interfaces';
+import { Popup } from '../components';
+import { useModal } from '../hooks';
 interface Props {
   videos: Videos;
   changePosition: (id: string, position: number) => void;
   deleteVideo: (id: string) => void;
 }
 export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
+  let { isShowing, toggle, open, id } = useModal()
 	const dragItem = useRef<any>(null)
 	const dragOverItem = useRef<any>(null)
   const { videoQueue, inPlay, reproduced } = videos;
@@ -24,9 +27,12 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   useEffect(() => {
     setVideosState(videoQueue)
   }, [videoQueue])
-  
+  console.log(id)
   return (
     <div className='w-full flex max-h-[33rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4'>
+      <Popup isShowing={isShowing} 
+             close={toggle}
+             deleteVideo={() => deleteVideo(id)} />
         {reproduced && reproduced.map((item) => (
            <ItemVideo key={item.id} video={item} inPlay={false} /> 
         ))}
@@ -41,6 +47,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
            video={item} 
            dragItem={dragItem} 
            dragOverItem={dragOverItem} 
+           moreOptions={() => open(item.id)}
            handleSort={handleSort}/> 
         ))}
     </div>
