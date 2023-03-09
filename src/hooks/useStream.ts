@@ -6,7 +6,7 @@ export const useStream = (addMessage: add, toggle: toggle) => {
     const [ isStreaming, setIsStreaming ] = useState<boolean>(false);
     const initStream = async () => {
        let bodyFetch = { status: 'start'}
-       fetch("http://127.0.0.1:4000/playlist", {
+       fetch("/playlist", {
         method: "PUT",
         body: JSON.stringify(bodyFetch),
       }).then((response) => {
@@ -28,7 +28,7 @@ export const useStream = (addMessage: add, toggle: toggle) => {
     }
     const stopStream = async () => {
         let bodyFetch = { status: 'stop'}
-        fetch("http://127.0.0.1:4000/playlist", {
+        fetch("/playlist", {
          method: "PUT",
          body: JSON.stringify(bodyFetch),
        }).then((response) => {
@@ -46,7 +46,7 @@ export const useStream = (addMessage: add, toggle: toggle) => {
     }
 
     useEffect(() => {
-        fetch("http://127.0.0.1:4000/playlist")
+        fetch("/playlist")
         .then((response) => response.json()
         .then((json) => {
           console.log(json)

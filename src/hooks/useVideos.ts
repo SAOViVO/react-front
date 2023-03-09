@@ -10,7 +10,7 @@ export const useVideos = (addMessage: add) => {
 
     const addOutput = async (output: string) => {
       let bodyFetch = { output: output }
-      fetch("http://127.0.0.1:4000/playlist", {
+      fetch("/playlist", {
         method: 'PATCH',
         body: JSON.stringify(bodyFetch),
     }).then((response) => response.json()
@@ -33,7 +33,7 @@ export const useVideos = (addMessage: add) => {
           if(!videoToUpload) return;
           formData.append('files', videoToUpload);
         }
-        fetch("http://127.0.0.1:4000/playlist", {
+        fetch("/playlist", {
             mode: 'no-cors',
             method: "POST",
             body: formData,
@@ -41,7 +41,7 @@ export const useVideos = (addMessage: add) => {
     }
     const changePosition = (id: string, position: number) => {
       const bodyFetch = { id: id, position: position }
-      fetch('http://127.0.0.1:4000/playlist', {
+      fetch('/playlist', {
        method: 'PATCH',
        body: JSON.stringify(bodyFetch),
       }).then((response) => {
@@ -54,7 +54,7 @@ export const useVideos = (addMessage: add) => {
     }    
     const deleteVideo = async (id: string) => {
       const bodyFetch = { id: id }
-      fetch('http://127.0.0.1:4000/playlist', {
+      fetch('/playlist', {
         method: 'DELETE',
         body: JSON.stringify(bodyFetch),
        }).then((response) =>{
@@ -68,7 +68,7 @@ export const useVideos = (addMessage: add) => {
     const handleToggle = () => setToggle(!toggle)
     useEffect(() => {
       const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
-        axios.get('http://127.0.0.1:4000/playlist')
+        axios.get('/playlist')
         .then(({data}) => {setVideos(data); setOutput(data.output)  })
         .catch((err) => console.log(err))
       }, 10000)
@@ -76,7 +76,7 @@ export const useVideos = (addMessage: add) => {
     }, [])
     useEffect(() => {
       console.log('entre toggle')
-      axios.get('http://127.0.0.1:4000/playlist')
+      axios.get('/playlist')
       .then(({data}) => { 
         setVideos(data); 
         setOutput(data.output) 
