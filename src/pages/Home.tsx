@@ -12,9 +12,9 @@ const Home = () => {
         <div className="flex items-start h-auto border border-black py-4 px-8 space-x-4">
             <div className="w-2/4 rounded-sm space-y-4">
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
-                    <Input />
-                    <List />
-                    <Output output={output} add={addOutput} />
+                    {/* <Input /> */}
+                    {/* <List /> */}
+                    <Output output={output} add={addOutput} isStreaming={isStreaming} />
                     <p>No sabés cómo conseguir tu link? {" "}
                         <a href="!#">
                           <span className='text-[#2F80ED]'>

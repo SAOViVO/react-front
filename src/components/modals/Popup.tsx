@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ReactComponent as Up } from '../static/up.svg'
-import { ReactComponent as Down } from '../static/down.svg'
-import { ReactComponent as Trash } from '../static/basura.svg'
-import { ReactComponent as Close } from '../static/exit.svg'
+import { ReactComponent as Up } from '../../static/up.svg'
+import { ReactComponent as Down } from '../../static/down.svg'
+import { ReactComponent as Trash } from '../../static/basura.svg'
+import { ReactComponent as Close } from '../../static/exit.svg'
 interface Props {
   // close: () => void
   toFirst: () => void

@@ -8,4 +8,6 @@ export { AddVideoBtn } from "./buttons/AddVideoBtn";
 export { ItemVideo } from "./ItemVideo";
 export { StopBtn } from "./buttons/StopBtn";
 export { DraggableItemVideo } from "./DraggabbleItemVideo";
-export { Popup } from "./Popup";
+export { Popup } from "./modals/Popup";
+export { AddLinkBtn } from "./buttons/AddLinkBtn";
+export { StopPopup } from "./modals/StopPopup";

@@ -1,5 +1,6 @@
 import { ChangeEvent, useState, useEffect } from "react"
 import axios from "axios"
+import { baseUrl } from "../config"
 type add = (status: number, message: string) => void
 
 export const useVideos = (addMessage: add) => {
@@ -10,7 +11,7 @@ export const useVideos = (addMessage: add) => {
 
     const addOutput = async (output: string) => {
       let bodyFetch = { output: output }
-      fetch("/playlist", {
+      fetch(baseUrl + "/playlist", {
         method: 'PATCH',
         body: JSON.stringify(bodyFetch),
     }).then((response) => response.json()
@@ -33,7 +34,7 @@ export const useVideos = (addMessage: add) => {
           if(!videoToUpload) return;
           formData.append('files', videoToUpload);
         }
-        fetch("/playlist", {
+        fetch(baseUrl + "/playlist", {
             mode: 'no-cors',
             method: "POST",
             body: formData,
@@ -41,7 +42,7 @@ export const useVideos = (addMessage: add) => {
     }
     const changePosition = (id: string, position: number) => {
       const bodyFetch = { id: id, position: position }
-      fetch('/playlist', {
+      fetch(baseUrl + "/playlist", {
        method: 'PATCH',
        body: JSON.stringify(bodyFetch),
       }).then((response) => {
@@ -54,7 +55,7 @@ export const useVideos = (addMessage: add) => {
     }    
     const deleteVideo = async (id: string) => {
       const bodyFetch = { id: id }
-      fetch('/playlist', {
+      fetch(baseUrl + "/playlist", {
         method: 'DELETE',
         body: JSON.stringify(bodyFetch),
        }).then((response) =>{
@@ -68,7 +69,7 @@ export const useVideos = (addMessage: add) => {
     const handleToggle = () => setToggle(!toggle)
     useEffect(() => {
       const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
-        axios.get('/playlist')
+        axios.get(baseUrl + '/playlist')
         .then(({data}) => {setVideos(data); setOutput(data.output)  })
         .catch((err) => console.log(err))
       }, 10000)
@@ -76,12 +77,12 @@ export const useVideos = (addMessage: add) => {
     }, [])
     useEffect(() => {
       console.log('entre toggle')
-      axios.get('/playlist')
+      axios.get(baseUrl + '/playlist')
       .then(({data}) => { 
         setVideos(data); 
         setOutput(data.output) 
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log("axios,", err))
     }, [toggle])
   
     return {
