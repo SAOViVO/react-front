@@ -11,3 +11,4 @@ export { DraggableItemVideo } from "./DraggabbleItemVideo";
 export { Popup } from "./modals/Popup";
 export { AddLinkBtn } from "./buttons/AddLinkBtn";
 export { StopPopup } from "./modals/StopPopup";
+export { AddLink } from "./modals/AddLink";

@@ -11,7 +11,8 @@ interface Props {
   videos: Videos;
 }
 export const Buttons = (props: Props) => {
-  const { isShowing, toggle }=useModal()
+  const { isShowing, toggle } = useModal()
+
   const { isStreaming, stopStream , initStream , addVideo, output, videos } = props
   return (
     <div className='flex space-x-4'>
