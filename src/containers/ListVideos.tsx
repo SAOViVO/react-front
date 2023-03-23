@@ -30,7 +30,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   }, [videoQueue])
   console.log(videosState)
   return (
-    <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] p-4 mt-4 font-poppins'>
+    <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
       <Popup isShowing={isShowing} 
              close={toggle}
              deleteVideo={() => deleteVideo(id)} 
@@ -38,7 +38,6 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
              toLast={() => changePosition(id, videosState.length - 1)} />
         {inPlay && <h2> Ahora en vivo </h2>}
         {inPlay && <ItemVideo video={inPlay} inPlay={true} />}
-  
         {videosState && videosState.map((item, i) => {
           return (
                 <>

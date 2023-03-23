@@ -12,3 +12,15 @@ body{
 .item {
     margin-right: 15px;
 }
+.btn-confirm {
+    @apply uppercase border border-solid border-[#333333] w-[30%] flex items-center justify-center rounded-lg bg-[#333333]  font-poppins font-bold text-[#F2F2F2]
+}
+.btn-confirm:disabled {
+    @apply bg-opacity-40 border-none
+}
+.btn-confirmated {
+    @apply uppercase border border-solid border-[#219653] w-[30%] flex items-center justify-center rounded-lg bg-[#219653]  font-poppins font-bold text-[#F2F2F2]
+}
+.output {
+    @apply border border-solid border-black disabled:cursor-not-allowed h-12 w-[70%] rounded-lg px-4 placeholder:font-poppins
+}

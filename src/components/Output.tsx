@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { ReactComponent as Pen } from "../static/pen.svg";
-import { ReactComponent as Checked } from "../static/checked.svg"
 interface Props {
   add: (output: string) => Promise<void>;
   output?: string;
@@ -9,11 +7,12 @@ interface Props {
 export const Output = ({ add, output, isStreaming }: Props) => {
   const [input, setInput] = useState<string>('')
   const handleSubmit = () => {
-    if(!output){
+    if(input !== ''){
       add(input)
       setInput('')
     }
   }
+  console.log(output && input === '')
   return (
     <div className="w-full">
          <h3 className="font-bold text-xl">Youtube</h3>
@@ -22,13 +21,11 @@ export const Output = ({ add, output, isStreaming }: Props) => {
                    disabled={isStreaming ? true : false}
                    value={input}
                    onChange={(e) => setInput(e.target.value)}
-                   className="border border-solid border-black disabled:cursor-not-allowed
-                   h-12 w-10/12 rounded-lg px-4 placeholder:font-poppins"></input>
-            <div className="border border-solid border-[#333333] w-12 flex items-center justify-center rounded-lg">
-              <button onClick={handleSubmit}>
-                {output ? <Checked/> : <Pen/>}
+                   className="output"></input>
+              <button onClick={handleSubmit} disabled={input === ''}
+                      className={output && input === '' ? 'btn-confirmated' : 'btn-confirm'}>
+                 {output && input === '' ? 'confirmada' : 'confirmar clave' }
               </button>
-            </div>
          </div>
     </div>
   )

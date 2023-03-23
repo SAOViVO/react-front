@@ -7,7 +7,7 @@ interface Props {
 }
 export const Notifications = ({ notifications } : Props) => {
   return (
-        <div className="h-64">
+        <div className="h-80">
             <h3 className='font-bold text-xl font-poppins'>Notificaciones</h3>
             <div className='w-full h-4/5 border-[#828282] border border-solid
                             flex flex-col p-4 rounded-lg overflow-y-auto'>
