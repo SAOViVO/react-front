@@ -95,7 +95,6 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
             <DraggableItemVideo 
               deleteVideo={() => deleteVideo(item.id)}
               i={i}
-    
               key={`${item.id},i${i}`} 
               video={item} 
               dragItem={dragItem} 

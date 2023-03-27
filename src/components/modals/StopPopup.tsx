@@ -14,11 +14,11 @@ export const StopPopup = ({ isShowing, close, stop } : Props ) => isShowing ? Re
                 ¿Estás seguro que querés detener la transmisión?
             </h3>
             <div className='flex w-full font-bold space-x-2 justify-end items-end'>
-            <button className='bg-[#EB5757] text-white w-48 text-sm h-11 rounded-full font-poppins uppercase flex items-center justify-center
+            <button className='bg-[#EB5757] text-white w-40 xl:w-48 text-sm h-11 rounded-full font-poppins uppercase flex items-center justify-center
                      disabled:bg-opacity-50' onClick={() => {stop(); close();}}>
                 detener transmisión
             </button>
-            <button className={`bg-[#333333] text-white w-48 text-sm h-11 px-2
+            <button className={`bg-[#333333] text-white w-40 xl:w-48 text-sm h-11 px-2
                     rounded-full font-poppins uppercase flex items-center justify-center`} onClick={close}>
                 seguir reproduciendo
             </button>

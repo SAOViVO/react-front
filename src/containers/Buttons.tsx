@@ -13,10 +13,9 @@ interface Props {
 }
 export const Buttons = (props: Props) => {
   const { isShowing, toggle } = useModal()
-
   const { isStreaming, stopStream , initStream , addVideo, output, videos, addLink } = props
   return (
-    <div className='flex space-x-4'>
+    <div className='flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 w-full'>
         <StopPopup isShowing={isShowing} close={toggle} stop={stopStream}/>
         {isStreaming ? <StopBtn stop={toggle} /> : <InitBtn init={initStream} available={output !== '' && videos.videoQueue.length >= 1 }/>}
         <AddVideoBtn disabled={isStreaming} addVideo={addVideo} />
