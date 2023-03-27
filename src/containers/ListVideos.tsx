@@ -28,7 +28,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   useEffect(() => {
     setVideosState(videoQueue)
   }, [videoQueue])
-  console.log(videosState)
+  console.log(reproduced)
   return (
     <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
       <Popup isShowing={isShowing} 
@@ -48,7 +48,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
                          <DraggableItemVideo 
                           deleteVideo={() => deleteVideo(item.id)}
                           i={i}
-                          key={item.id} 
+                          key={'first' + item.id} 
                           video={item} 
                           dragItem={dragItem} 
                           dragOverItem={dragOverItem} 
@@ -60,7 +60,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
                             <DraggableItemVideo 
                             deleteVideo={() => deleteVideo(item.id)}
                             i={i}
-                            key={item.id} 
+                            key={'sec' + item.id} 
                             video={item} 
                             dragItem={dragItem} 
                             dragOverItem={dragOverItem} 
@@ -76,7 +76,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
                   <DraggableItemVideo 
                           deleteVideo={() => deleteVideo(item.id)}
                           i={i}
-                          key={item.id} 
+                          key={'third' + item.id} 
                           video={item} 
                           dragItem={dragItem} 
                           dragOverItem={dragOverItem} 
@@ -87,14 +87,16 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
            </>
           )
        })}
-          <div className='w-full border border-red-600 h-12 '>
-
-          </div>
+          {reproduced && reproduced.length > 0 &&         
+           <div className='w-full h-12 '>
+              <h3 className='text-center'>reproduced</h3>
+          </div>}
           {reproduced && reproduced.map((item, i) => (
             <DraggableItemVideo 
               deleteVideo={() => deleteVideo(item.id)}
               i={i}
-              key={item.id} 
+    
+              key={`${item.id},i${i}`} 
               video={item} 
               dragItem={dragItem} 
               dragOverItem={dragOverItem} 

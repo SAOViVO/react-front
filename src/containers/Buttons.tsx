@@ -4,6 +4,7 @@ import { Videos } from '../hooks/interfaces';
 import { useModal } from '../hooks';
 interface Props {
   addVideo: (event: ChangeEvent<HTMLInputElement>) => void;
+  addLink: (link: string) => Promise<void>;
   isStreaming: boolean;
   initStream: () => void;
   stopStream: () => void;
@@ -13,13 +14,13 @@ interface Props {
 export const Buttons = (props: Props) => {
   const { isShowing, toggle } = useModal()
 
-  const { isStreaming, stopStream , initStream , addVideo, output, videos } = props
+  const { isStreaming, stopStream , initStream , addVideo, output, videos, addLink } = props
   return (
     <div className='flex space-x-4'>
         <StopPopup isShowing={isShowing} close={toggle} stop={stopStream}/>
         {isStreaming ? <StopBtn stop={toggle} /> : <InitBtn init={initStream} available={output !== '' && videos.videoQueue.length >= 1 }/>}
         <AddVideoBtn disabled={isStreaming} addVideo={addVideo} />
-        <AddLinkBtn disabled={isStreaming} addVideo={addVideo} />
+        <AddLinkBtn disabled={isStreaming} addLink={addLink} />
     </div>
   )
 }

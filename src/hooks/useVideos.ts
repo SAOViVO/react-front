@@ -18,6 +18,17 @@ export const useVideos = (addMessage: add) => {
       .then((json) => { addMessage(response.status, json.message); setOutput(output)}))
       .catch((err) => addMessage(err.status, err.error))
   }
+    const addLink = async (link: string) => {
+      try {
+        const { data } = await axios.post(baseUrl + '/playlist/remote', { url: link});
+        // addMessage(data.status, data.message)
+        console.log(data)
+        setToggle(!toggle);
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
         console.log("entre")
         if (!e.target.files) return;
@@ -92,6 +103,7 @@ export const useVideos = (addMessage: add) => {
         deleteVideo,
         addOutput,
         output,
-        handleToggle
+        handleToggle,
+        addLink
     }
 }

@@ -1,16 +1,20 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { ReactComponent as Add } from '../../static/add.svg'
 import { useModal } from '../../hooks';
-import { AddLink } from '../modals/AddLink';
+import { AddLink as AddLinkModal } from '../modals/AddLink';
 interface Props {
   disabled: boolean;
-  addVideo: (event: ChangeEvent<HTMLInputElement>) => void;
+  addLink: (link: string) => Promise<void>;
 }
-export const AddLinkBtn = ({ disabled, addVideo }: Props) => {
+export const AddLinkBtn = ({ disabled, addLink }: Props) => {
   let { isShowing, toggle } = useModal()
+  const [input, setInput] = useState<string>('');
+  console.log(input)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
+
   return (
       <form>
-        <AddLink isShowing={isShowing} close={toggle}/>
+        <AddLinkModal isShowing={isShowing} close={toggle} handleChange={handleChange} input={input} send={addLink}/>
         <label onClick={toggle}
         className={`bg-[#333333] text-white w-56 h-14 rounded-full font-poppins uppercase flex items-center justify-center`}>
          <Add className='mr-2'/> Agregar link 

@@ -4,7 +4,7 @@ import { ListVideos, Buttons } from "../containers";
 import { useStream, useVideos, useMessages } from "../hooks";
 const Home = () => {
   const { addMessage, messages } = useMessages()
-  const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle } = useVideos(addMessage);
+  const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink } = useVideos(addMessage);
   const { isStreaming, initStream , stopStream } = useStream(addMessage, handleToggle);
   return (
     <div className="h-screen">
@@ -14,7 +14,7 @@ const Home = () => {
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
                     {/* <Input /> */}
                     {/* <List /> */}
-                    <Output output={output} add={addOutput} isStreaming={isStreaming} />
+                    <Output output={output} add={addOutput}  isStreaming={isStreaming} />
                     <p>No sabés cómo conseguir tu link? {" "}
                         <a href="!#">
                           <span className='text-[#2F80ED]'>
@@ -29,7 +29,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex w-full xl:w-3/5 flex-col items-start  h-full  py-4 xl:px-8">
-              <Buttons addVideo={addVideo} isStreaming={isStreaming} 
+              <Buttons addVideo={addVideo} isStreaming={isStreaming} addLink={addLink}
                        initStream={initStream} stopStream={stopStream}
                        videos={videos} output={output} />
               <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo}/>

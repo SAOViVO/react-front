@@ -9,11 +9,11 @@ interface Props {
 export const StopPopup = ({ isShowing, close, stop } : Props ) => isShowing ? ReactDOM.createPortal( 
     <React.Fragment>
       <div className="fixed inset-0 bg-black bg-opacity-50 font-encode flex items-center justify-center">
-        <div className='bg-white px-4 h-40'>
+        <div className='bg-white px-10 h-36 flex flex-col justify-between py-6 border border-black'>
             <h3 className='font-poppins text-2xl'>
                 ¿Estás seguro que querés detener la transmisión?
             </h3>
-            <div className='flex w-full font-bold justify end items-end'>
+            <div className='flex w-full font-bold space-x-2 justify-end items-end'>
             <button className='bg-[#EB5757] text-white w-48 text-sm h-11 rounded-full font-poppins uppercase flex items-center justify-center
                      disabled:bg-opacity-50' onClick={() => {stop(); close();}}>
                 detener transmisión
