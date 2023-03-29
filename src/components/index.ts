@@ -14,3 +14,5 @@ export { StopPopup } from "./modals/StopPopup";
 export { AddLink } from "./modals/AddLink";
 export { NoVideos } from "./NoVideos";
 export { Uploading } from "./modals/Uploading";
+export { CleanListBtn } from "./buttons/CleanListBtn";
+export { ListInfo } from "./ListInfo";

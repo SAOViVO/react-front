@@ -30,7 +30,7 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
     setVideosState(videoQueue)
   }, [videoQueue])
   return (
-    <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
+    <div className='w-full flex h-[30rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
    
       {(videosState && videosState.length  > 0 ) || inPlay !== null || (reproduced && reproduced.length > 0) ? 
         <> 

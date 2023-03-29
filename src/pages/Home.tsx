@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 import { Output, Notifications, Advertisement, Uploading } from "../components";
-import { ListVideos, Buttons } from "../containers";
+import { ListVideos, Buttons, VideosInfo } from "../containers";
 import { useStream, useVideos, useMessages } from "../hooks";
 const Home = () => {
   const { addMessage, messages } = useMessages();
   const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink, isUploading} = useVideos(addMessage);
   const { isStreaming, initStream , stopStream } = useStream(addMessage, handleToggle);
+  console.log(videos)
   return (
     <div className="h-screen">
         <Uploading isShowing={isUploading} />
@@ -27,11 +28,12 @@ const Home = () => {
                     <Advertisement /> 
                 </div>
             </div>
-            <div className="flex w-full xl:w-3/5 flex-col items-start  h-full  py-4 xl:px-8">
+            <div className="flex w-full xl:w-3/5 flex-col items-start  h-full   xl:px-8">
               <Buttons addVideo={addVideo} isStreaming={isStreaming} addLink={addLink}
                        initStream={initStream} stopStream={stopStream}
                        videos={videos} output={output} />
               <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo} addVideo={addVideo}/>
+              <VideosInfo isStreaming={isStreaming} quantityVideos={videos.videoQueue ? videos.videoQueue.length : 0}/>
             </div>
         </div>
  
