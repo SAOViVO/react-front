@@ -1,19 +1,18 @@
 import Navbar from "../components/Navbar";
-import { Input, Output, List, Notifications, Advertisement } from "../components";
+import { Output, Notifications, Advertisement, Uploading } from "../components";
 import { ListVideos, Buttons } from "../containers";
 import { useStream, useVideos, useMessages } from "../hooks";
 const Home = () => {
-  const { addMessage, messages } = useMessages()
-  const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink } = useVideos(addMessage);
+  const { addMessage, messages } = useMessages();
+  const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink, isUploading} = useVideos(addMessage);
   const { isStreaming, initStream , stopStream } = useStream(addMessage, handleToggle);
   return (
     <div className="h-screen">
+        <Uploading isShowing={isUploading} />
         <Navbar></Navbar>
         <div className="flex flex-col xl:flex-row items-start h-auto border border-black py-4 px-8 xl:space-x-4">
             <div className="w-full xl:w-2/5 rounded-sm space-y-4">
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
-                    {/* <Input /> */}
-                    {/* <List /> */}
                     <Output output={output} add={addOutput}  isStreaming={isStreaming} />
                     <p>No sabés cómo conseguir tu link? {" "}
                         <a href="!#">
@@ -32,7 +31,7 @@ const Home = () => {
               <Buttons addVideo={addVideo} isStreaming={isStreaming} addLink={addLink}
                        initStream={initStream} stopStream={stopStream}
                        videos={videos} output={output} />
-              <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo}/>
+              <ListVideos videos={videos} changePosition={changePosition} deleteVideo={deleteVideo} addVideo={addVideo}/>
             </div>
         </div>
  

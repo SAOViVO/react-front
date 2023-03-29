@@ -8,7 +8,7 @@ export const useVideos = (addMessage: add) => {
     const [ videos, setVideos ] = useState<any>([])
     const [ toggle, setToggle ] = useState<boolean>(false);
     const [ output, setOutput ] = useState<string>('');
-
+    const [ isUploading, setIsUploading ] = useState<boolean>(false);
     const addOutput = async (output: string) => {
       let bodyFetch = { output: output }
       fetch(baseUrl + "/playlist", {
@@ -19,6 +19,7 @@ export const useVideos = (addMessage: add) => {
       .catch((err) => addMessage(err.status, err.error))
   }
     const addLink = async (link: string) => {
+      setIsUploading(true);
       try {
         const { data } = await axios.post(baseUrl + '/playlist/remote', { url: link});
         // addMessage(data.status, data.message)
@@ -28,10 +29,14 @@ export const useVideos = (addMessage: add) => {
       catch(err) {
         console.log(err)
       }
+      finally {
+        setIsUploading(false);
+      }
+
     }
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
-        console.log("entre")
         if (!e.target.files) return;
+        setIsUploading(true);
         var videoToUpload;
         var formData = new FormData();
         if(e.target.files.length > 1){
@@ -49,7 +54,11 @@ export const useVideos = (addMessage: add) => {
             mode: 'no-cors',
             method: "POST",
             body: formData,
-          }).then(() => setToggle(!toggle));
+          }).then(() => {setToggle(!toggle);  setIsUploading(false)})
+          .catch((err) => {
+            console.log(err);
+            setIsUploading(false)
+          });
     }
     const changePosition = (id: string, position: number) => {
       const bodyFetch = { id: id, position: position }
@@ -104,6 +113,7 @@ export const useVideos = (addMessage: add) => {
         addOutput,
         output,
         handleToggle,
-        addLink
+        addLink,
+        isUploading
     }
 }

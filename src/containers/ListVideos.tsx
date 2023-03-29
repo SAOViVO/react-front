@@ -1,14 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { ItemVideo, DraggableItemVideo} from '../components'
+import React, { useRef, useState, useEffect, ChangeEvent } from 'react'
+import { ItemVideo, DraggableItemVideo, NoVideos, Popup} from '../components'
 import { Videos } from '../hooks/interfaces';
-import { Popup } from '../components';
 import { useModal } from '../hooks';
+import { ReactComponent as ReproducedLine } from '../static/reproduced-line.svg'
 interface Props {
   videos: Videos;
   changePosition: (id: string, position: number) => void;
   deleteVideo: (id: string) => void;
+  addVideo: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
+export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : Props) => {
   let { isShowing, toggle, open, id } = useModal()
 	const dragItem = useRef<any>(null)
 	const dragOverItem = useRef<any>(null)
@@ -28,10 +29,12 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
   useEffect(() => {
     setVideosState(videoQueue)
   }, [videoQueue])
-  console.log(reproduced)
   return (
     <div className='w-full flex h-[33rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
-      <Popup isShowing={isShowing} 
+   
+      {(videosState && videosState.length  > 0 ) || inPlay !== null || (reproduced && reproduced.length > 0) ? 
+        <> 
+        <Popup isShowing={isShowing} 
              close={toggle}
              deleteVideo={() => deleteVideo(id)} 
              toFirst={ () => changePosition(id, 0)}
@@ -88,8 +91,8 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
           )
        })}
           {reproduced && reproduced.length > 0 &&         
-           <div className='w-full h-12 '>
-              <h3 className='text-center'>reproduced</h3>
+           <div className='w-full h-12 flex items-center'>
+              <ReproducedLine className='w-full' />
           </div>}
           {reproduced && reproduced.map((item, i) => (
             <DraggableItemVideo 
@@ -103,6 +106,8 @@ export const ListVideos = ({ videos, changePosition, deleteVideo } : Props) => {
               handleSort={handleSort}
               reproduced={true}/> 
           ))}
+        </> : <NoVideos addVideo={addVideo}/>}
+   
     </div>
   )
 }
