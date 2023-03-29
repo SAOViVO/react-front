@@ -13,10 +13,12 @@ export const AddLinkBtn = ({ disabled, addLink }: Props) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
   return (
-
+       <>
+        <AddLinkModal isShowing={isShowing} close={toggle} handleChange={handleChange} input={input} send={addLink}/>
         <button onClick={toggle}
         className={`bg-[#333333] text-white w-56 h-14 rounded-full font-poppins uppercase flex items-center justify-center`}>
          <Add className='mr-2'/> Agregar link 
         </button> 
+       </>
      )
 }
