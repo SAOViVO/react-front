@@ -17,14 +17,27 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
   const [ videosState, setVideosState ] = useState(videoQueue)
   const handleSort = () => {
 		let _videosQueue = [...videosState]
+    console.log("current",dragItem.current)
 		const itemToSwap = _videosQueue.splice(dragItem.current, 1)[0]
-    console.log(itemToSwap)
-   	  console.log(itemToSwap.id, "to", dragOverItem.current)
 		_videosQueue.splice(dragOverItem.current, 0, itemToSwap)
     changePosition(itemToSwap.id, dragOverItem.current)
 		dragItem.current = null
 		dragOverItem.current = null
 		setVideosState(_videosQueue)
+	}
+  const handleReproduceSort = () => {
+    if(!reproduced) return;
+		let _videosReproduced = reproduced
+    console.log("current", dragItem.current)
+		const itemToSwap = _videosReproduced.splice(dragItem.current, 1)[0]
+    console.log('toSwap', itemToSwap)
+    // let _videosQueue = [...videosState]
+    console.log(dragOverItem.current)
+		// _videosQueue.splice(dragOverItem.current, 0, itemToSwap)
+    // changePosition(itemToSwap.id, dragOverItem.current)
+		dragItem.current = null
+		dragOverItem.current = null
+		// setVideosState(_videosQueue)
 	}
   useEffect(() => {
     setVideosState(videoQueue)
@@ -94,8 +107,10 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
            <div className='w-full h-12 flex items-center'>
               <ReproducedLine className='w-full' />
           </div>}
-          {reproduced && reproduced.map((item, i) => (
-            <DraggableItemVideo 
+          {reproduced && reproduced.map((item, i) => {
+            console.log(item)
+            return (
+              <DraggableItemVideo 
               deleteVideo={() => deleteVideo(item.id)}
               i={i}
               key={`${item.id},i${i}`} 
@@ -103,10 +118,12 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
               dragItem={dragItem} 
               dragOverItem={dragOverItem} 
               moreOptions={() => open(item.id)}
-              handleSort={handleSort}
+              handleSort={handleReproduceSort}
               reproduced={true}/> 
-          ))}
-        </> : <NoVideos addVideo={addVideo}/>}
+            )
+          })}
+          
+            </> : <NoVideos addVideo={addVideo}/>}
    
     </div>
   )

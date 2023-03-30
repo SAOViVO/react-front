@@ -4,6 +4,7 @@ type add = (status: number, message: string) => void
 type toggle = () => void;
 export const useStream = (addMessage: add, toggle: toggle) => {
     const [ isStreaming, setIsStreaming ] = useState<boolean>(false);
+    const [ isStopping, setIsStopping ] = useState<boolean>(false);
     const initStream = async () => {
        let bodyFetch = { status: 'start'}
        fetch(baseUrl + "/playlist", {
@@ -25,6 +26,7 @@ export const useStream = (addMessage: add, toggle: toggle) => {
         })
     }
     const stopStream = async () => {
+        setIsStopping(true); 
         let bodyFetch = { status: 'stop'}
         fetch(baseUrl + "/playlist", {
          method: "PUT",
@@ -35,10 +37,12 @@ export const useStream = (addMessage: add, toggle: toggle) => {
             addMessage(response.status, json.message)
             toggle()
             setIsStreaming(false); 
+            setIsStopping(false);
           })})
           .catch((err) => { 
             setIsStreaming(false); 
             addMessage(err.status, err.error)
+            setIsStopping(false);
             console.log(err)
           })
     }
@@ -55,6 +59,7 @@ export const useStream = (addMessage: add, toggle: toggle) => {
     return {
         isStreaming,
         initStream, 
+        isStopping,
         stopStream,
 
     }
