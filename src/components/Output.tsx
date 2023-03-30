@@ -12,7 +12,6 @@ export const Output = ({ add, output, isStreaming }: Props) => {
       setInput('')
     }
   }
-  console.log(output && input === '')
   return (
     <div className="w-full">
          <h3 className="font-bold text-xl">Youtube</h3>

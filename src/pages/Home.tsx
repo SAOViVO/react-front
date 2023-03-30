@@ -6,7 +6,6 @@ const Home = () => {
   const { addMessage, messages } = useMessages();
   const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink, isUploading} = useVideos(addMessage);
   const { isStreaming, initStream , stopStream, isStopping } = useStream(addMessage, handleToggle);
-  console.log(isStopping, 'stoping')
   return (
     <div className="h-screen">
         <Uploading isShowing={isUploading} />

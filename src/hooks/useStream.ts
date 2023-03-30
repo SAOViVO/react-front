@@ -51,7 +51,6 @@ export const useStream = (addMessage: add, toggle: toggle) => {
         fetch(baseUrl + "/playlist")
         .then((response) => response.json()
         .then((json) => {
-          console.log(json)
           let status = json.status === 'start';
           setIsStreaming(status)
         }))

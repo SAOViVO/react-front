@@ -23,7 +23,6 @@ export const useVideos = (addMessage: add) => {
       try {
         const { data } = await axios.post(baseUrl + '/playlist/remote', { url: link});
         // addMessage(data.status, data.message)
-        console.log(data)
         setToggle(!toggle);
       }
       catch(err) {
@@ -45,7 +44,6 @@ export const useVideos = (addMessage: add) => {
              formData.append('files', videoToUpload);
            }
         }else {
-          console.log(e.target.files.length)
           videoToUpload = e.target.files[0];
           if(!videoToUpload) return;
           formData.append('files', videoToUpload);
@@ -87,6 +85,7 @@ export const useVideos = (addMessage: add) => {
        .catch((err) =>  addMessage(err.status, err.error))
     }
     const handleToggle = () => setToggle(!toggle)
+
     useEffect(() => {
       const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
         axios.get(baseUrl + '/playlist')
@@ -96,7 +95,6 @@ export const useVideos = (addMessage: add) => {
       return () => clearInterval(intervalId); //This is important
     }, [])
     useEffect(() => {
-      console.log('entre toggle')
       axios.get(baseUrl + '/playlist')
       .then(({data}) => { 
         setVideos(data); 

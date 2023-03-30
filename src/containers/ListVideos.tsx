@@ -15,6 +15,8 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
 	const dragOverItem = useRef<any>(null)
   const { videoQueue, inPlay, reproduced } = videos;
   const [ videosState, setVideosState ] = useState(videoQueue)
+  const [ reproducedState, setReproducedState ] = useState(reproduced)
+
   const handleSort = () => {
 		let _videosQueue = [...videosState]
     console.log("current",dragItem.current)
@@ -33,8 +35,10 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
     console.log('toSwap', itemToSwap)
     // let _videosQueue = [...videosState]
     console.log(dragOverItem.current)
+    console.log('toSwap', itemToSwap.id, 'toSwapped', dragOverItem.current)
+    console.log(videoQueue)
 		// _videosQueue.splice(dragOverItem.current, 0, itemToSwap)
-    // changePosition(itemToSwap.id, dragOverItem.current)
+    changePosition(itemToSwap.id, dragOverItem.current)
 		dragItem.current = null
 		dragOverItem.current = null
 		// setVideosState(_videosQueue)
@@ -42,6 +46,9 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
   useEffect(() => {
     setVideosState(videoQueue)
   }, [videoQueue])
+  useEffect(() => {
+    setReproducedState(reproduced)
+  }, [reproduced])
   return (
     <div className='w-full flex h-[30rem] min-h-[20rem] space-y-0.5 flex-col border border-[#828282] xl:p-4 mt-4 font-poppins'>
    
@@ -103,12 +110,11 @@ export const ListVideos = ({ videos, changePosition, deleteVideo, addVideo } : P
            </>
           )
        })}
-          {reproduced && reproduced.length > 0 &&         
+          {reproducedState && reproducedState.length > 0 &&         
            <div className='w-full h-12 flex items-center'>
               <ReproducedLine className='w-full' />
           </div>}
-          {reproduced && reproduced.map((item, i) => {
-            console.log(item)
+          {reproducedState && reproducedState.map((item, i) => {
             return (
               <DraggableItemVideo 
               deleteVideo={() => deleteVideo(item.id)}
