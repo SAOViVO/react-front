@@ -7,7 +7,7 @@ interface Props {
 }
 export const AddVideoBtn = ({ disabled, addVideo }: Props) => {
   return (
-        <label className={`bg-[#333333] text-white w-56 h-14  rounded-full font-poppins uppercase flex items-center justify-center`}>
+        <label className={`bg-[#333333] text-white w-56 h-14 cursor-pointer  rounded-full font-poppins uppercase flex items-center justify-center`}>
             <Add className='mr-2'/> Agregar video
             <input type="file" id="files" name="files" multiple 
                   onChange={addVideo}

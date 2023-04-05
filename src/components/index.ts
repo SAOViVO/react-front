@@ -17,3 +17,5 @@ export { Uploading } from "./modals/Uploading";
 export { CleanListBtn } from "./buttons/CleanListBtn";
 export { ListInfo } from "./ListInfo";
 export { Stop } from "./modals/Stop";
+export { Footer } from "./Footer";
+export { Navbar } from "./Navbar";

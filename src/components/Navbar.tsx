@@ -1,7 +1,7 @@
 // import circle from "../static/circle.png"
 // import triangle from "../static/triangle.png"
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <nav className='flex justify-between px-12 py-6 w-full bg-[#FFFFFF] border-bottom border shadow-lg'>
         <div className=" font-numans text-4xl flex w-2/4 items-center">
@@ -15,4 +15,3 @@ const Navbar = () => {
   )
 }
 
-export default Navbar;

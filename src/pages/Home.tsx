@@ -1,5 +1,4 @@
-import Navbar from "../components/Navbar";
-import { Output, Notifications, Advertisement, Uploading, Stop } from "../components";
+import { Output, Notifications, Advertisement, Uploading, Stop, Footer, Navbar } from "../components";
 import { ListVideos, Buttons, VideosInfo } from "../containers";
 import { useStream, useVideos, useMessages } from "../hooks";
 const Home = () => {
@@ -7,7 +6,7 @@ const Home = () => {
   const { videos, addVideo , changePosition, deleteVideo, addOutput, output, handleToggle, addLink, isUploading} = useVideos(addMessage);
   const { isStreaming, initStream , stopStream, isStopping } = useStream(addMessage, handleToggle);
   return (
-    <div className="h-screen">
+    <div className="homes">
         <Uploading isShowing={isUploading} />
         <Stop isShowing={isStopping} />
         <Navbar></Navbar>
@@ -36,6 +35,7 @@ const Home = () => {
               <VideosInfo isStreaming={isStreaming} quantityVideos={videos.total ? videos.total : 0} duration={videos.duration} deleteList={deleteVideo}/>
             </div>
         </div>
+        <Footer />
  
     </div>
   )

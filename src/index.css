@@ -24,3 +24,11 @@ body{
 .output {
     @apply border border-solid border-black disabled:cursor-not-allowed h-12 w-[70%] rounded-lg px-4 placeholder:font-poppins
 }
+.footer{
+    position: relative;
+    left: 0;
+    bottom: 0;
+  }
+.home {
+    height: calc(100% - 60px);
+}
