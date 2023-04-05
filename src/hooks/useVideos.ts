@@ -35,7 +35,6 @@ export const useVideos = (addMessage: add) => {
     }
     const addVideo = (e :ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
-        setIsUploading(true);
         var videoToUpload;
         var formData = new FormData();
         if(e.target.files.length > 1){
@@ -48,6 +47,8 @@ export const useVideos = (addMessage: add) => {
           if(!videoToUpload) return;
           formData.append('files', videoToUpload);
         }
+        setIsUploading(true);
+
         fetch(baseUrl + "/playlist", {
             mode: 'no-cors',
             method: "POST",
