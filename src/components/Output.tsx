@@ -16,7 +16,7 @@ export const Output = ({ add, output, isStreaming }: Props) => {
     <div className="w-full">
          <h3 className="font-bold text-xl">Youtube</h3>
          <div className="flex space-x-1">
-            <input placeholder={output ? output : 'Ingresá tu clave del vivo de YouTube'}
+            <input placeholder={output ? output : 'Ingresá tu clave de emisión de YouTube'}
                    disabled={isStreaming ? true : false}
                    value={input}
                    onChange={(e) => setInput(e.target.value)}

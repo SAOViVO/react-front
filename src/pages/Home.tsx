@@ -14,10 +14,10 @@ const Home = () => {
             <div className="w-full xl:w-2/5 rounded-sm space-y-4">
                 <div className='px-6 rounded-lg py-4 border-[#828282] border border-solid'>
                     <Output output={output} add={addOutput}  isStreaming={isStreaming} />
-                    <p>No sabés cómo conseguir tu link? {" "}
-                        <a href="!#">
+                    <p>¿No sabés cómo conseguir tu clave? 
+                        <a href="https://youtu.be/RNtwx71wVMo" target='_blank' rel='noreferrer'>
                           <span className='text-[#2F80ED]'>
-                              mirá este tutorial 
+                               Mirá este tutorial
                           </span>
                         </a>
                     </p>
